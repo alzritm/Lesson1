@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Unity3D.DLLs</id>
+    <version>1.0.1</version>
+    <title>Unity3D DLLs</title>
+    <authors>Precision Mojo</authors>
+    <owners>Precision Mojo</owners>
+    <licenseUrl>http://precisionmojo.github.io/Unity3D.DLLs/#the-mit-license</licenseUrl>
+    <projectUrl>http://precisionmojo.github.io/Unity3D.DLLs/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Adds project assembly references to Unity3D managed DLLs installed on the system. Adds Package Manager Console commands to update, add, and remove Unity3D assembly references.</description>
+    <summary>Provides a convenient method of working with Unity3D plugin and extension projects.</summary>
+    <releaseNotes>Remove the Property named argument to Where-Object.</releaseNotes>
+    <copyright>Copyright (c) 2013 Precision Mojo, LLC and Contributors.</copyright>
+    <language>en-US</language>
+    <tags>unity3d</tags>
+    <references />
+  </metadata>
+</package>

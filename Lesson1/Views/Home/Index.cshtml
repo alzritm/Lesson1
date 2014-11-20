@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Привет</h2>
+<input type="button" value="Открыть" onclick="popup()">
+<div id="mainGrid" style="width: 100%; height: 400px;"></div>
+<script type="text/javascript">
+function popup() {
+	w2popup.open({
+		title: 'Привет',
+		body: '<div class="w2ui-centered"><div>This is text inside the popup</div></div>'
+	});
+}
+    //------
+//  Grid
+
+// Grid widget configuration
+var config = {
+    grid: {
+        name: 'grid',
+        show: {
+            footer: true,
+            toolbar: true
+        },
+        //url: 'data/records.json',
+        columns: [
+            {field: 'recid', caption: 'ID', size: '50px', sortable: true },
+            { field: 'Date', caption: 'Дата', size: '150px', sortable: true, resizable: true },
+            { field: 'Name', caption: 'Имя', size: '140px', sortable: true, searchable: 'text', resizable: true },
+            { field: 'Count', caption: 'Количество', size: '140px', sortable: true, searchable: 'text', resizable: true },
+            { field: 'Comment', caption: 'Комментарий', size: '100%', resizable: true, sortable: true },
+        ],
+        records: [
+            { recid: 1, Date: '12 / 01 / 2010', Name: 'John', Count: '1', Comment: 'Кажется jdoe@gmail.com' },
+            { recid: 2, Date: '12 / 01 / 2012', Name: 'John2', Count: '2', Comment: 'jdoe@gmail.cosefsm' }
+        ]
+    }
+};
+
+function refreshGrid() {
+    w2ui.grid.autoLoad = true;
+    w2ui.grid.skip(0);
+}
+
+//$(function () {
+$('#mainGrid').w2grid(config.grid);
+w2ui.grid.toggleColumn('recid');
+//});
+// End Grid
+//------
+</script>
