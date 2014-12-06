@@ -22,6 +22,7 @@ namespace Lesson1
     public class MvcApplication : HttpApplication
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        public AlzNinjecrDependancyResolver resolver;
         protected void Application_Start()
         {
             logger.Info("Application Start");
@@ -34,7 +35,7 @@ namespace Lesson1
 
             IKernel kernel = new StandardKernel();
             kernel.Bind<ISalesService>().To<SalesService>();
-            var resolver = new AlzNinjecrDependancyResolver(kernel);
+            resolver = new AlzNinjecrDependancyResolver(kernel);
             DependencyResolver.SetResolver(resolver);
         }
         public void Init()

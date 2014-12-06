@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using AttributeRouting.Web.Http;
@@ -24,6 +25,8 @@ namespace Lesson1.Controllers
             //}
             var res = SalesService.GetList();
             var total = SalesService.GetNuberSales();
+            
+            //return Json(res);
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
                 data = res,
