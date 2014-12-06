@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -19,55 +21,97 @@ namespace Lesson1
 
 
 
-    public class MvcApplication : HttpApplication
+    public class MvcApplication : NinjectHttpApplication
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public AlzNinjecrDependancyResolver resolver;
-        protected void Application_Start()
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            logger.Info("Application Start");
+            filters.Add(new HandleErrorAttribute());
+        }
+
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                "Default", // Route name
+                "{controller}/{action}/{id}", // URL with parameters
+                new
+                {
+                    controller = "Home",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                });
+        }
+        //public AlzNinjecrDependancyResolver resolver;
+        //protected void Application_Start()
+        //{
+        //    logger.Info("Application Start");
+        //    AreaRegistration.RegisterAllAreas();
+
+        //    WebApiConfig.Register(GlobalConfiguration.Configuration);
+        //    FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+        //    RouteConfig.RegisterRoutes(RouteTable.Routes);
+        //    BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+        //    IKernel kernel = new StandardKernel();
+        //    kernel.Bind<ISalesService>().To<SalesService>();
+        //    resolver = new AlzNinjecrDependancyResolver(kernel);
+        //    DependencyResolver.SetResolver(resolver);
+        //}
+        //public void Init()
+        //{
+        //    logger.Info("Application Init");
+        //}
+
+        //public void Dispose()
+        //{
+        //    logger.Info("Application Dispose");
+        //}
+
+        //protected void Application_Error()
+        //{
+        //    logger.Info("Application Error");
+        //}
+
+
+        //protected void Application_End()
+        //{
+        //    logger.Info("Application End");
+        //}
+        protected override void OnApplicationStarted()
+        {
+            logger.Info("Application Started");
+            base.OnApplicationStarted();
             AreaRegistration.RegisterAllAreas();
 
+            //AttributeRoutingConfig.RegisterRoutes(GlobalConfiguration.Configuration.Routes);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            IKernel kernel = new StandardKernel();
-            kernel.Bind<ISalesService>().To<SalesService>();
-            resolver = new AlzNinjecrDependancyResolver(kernel);
-            DependencyResolver.SetResolver(resolver);
-        }
-        public void Init()
-        {
-            logger.Info("Application Init");
         }
 
-        public void Dispose()
+        protected override IKernel CreateKernel()
         {
-            logger.Info("Application Dispose");
-        }
+            //var kernel = new StandardKernel();
 
-        protected void Application_Error()
-        {
-            logger.Info("Application Error");
-        }
+            //DependencyResolver.SetResolver(new AlzNinjecrDependancyResolver(kernel));
+            //return kernel;
 
+            var kernel = new StandardKernel();            
+            //kernel.Bind<ISalesService>().To<SalesService>();
+            //kernel.Load(Assembly.GetExecutingAssembly());
+            //kernel.Bind<DbConnection>().ToSelf().InRequestScope();
 
-        protected void Application_End()
-        {
-            logger.Info("Application End");
+            //kernel.Bind<IPrincipal>().ToMethod(ctx => HttpContext.Current.User).InRequestScope();
+            //GlobalConfiguration.Configuration.DependencyResolver = new AlzNinjecrDependancyResolver(kernel);
+            return kernel;
         }
 
         //protected override IKernel CreateKernel()
         //{
-        //    var kernel = new StandardKernel();
-        //    //kernel.Load(Assembly.GetExecutingAssembly());
-
-        //    //GlobalConfiguration.Configuration.DependencyResolver = new LocalNinjectDependencyResolver(kernel);
-        //    kernel.Bind<ISalesService>().To<SalesService>();
-        //    DependencyResolver.SetResolver(new AlzNinjecrDependancyResolver(kernel));
-        //    return kernel;
+        //    throw new NotImplementedException();
         //}
     }
 }

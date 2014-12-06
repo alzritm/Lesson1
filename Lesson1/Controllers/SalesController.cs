@@ -11,7 +11,7 @@ using Ninject;
 namespace Lesson1.Controllers
 {
     using TestService;
-    public class SalesController : ApiController
+    public class SalesController : BaseController
     {
         [Inject]
         public ISalesService SalesService { private get; set; }

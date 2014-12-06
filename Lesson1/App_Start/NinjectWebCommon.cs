@@ -1,5 +1,3 @@
-using TestService;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Lesson1.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Lesson1.App_Start.NinjectWebCommon), "Stop")]
 
@@ -63,7 +61,6 @@ namespace Lesson1.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ISalesService>().To<SalesService>();
         }        
     }
 }

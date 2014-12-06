@@ -10,7 +10,7 @@ using IDependencyResolver = System.Web.Mvc.IDependencyResolver;
 
 namespace Lesson1
 {
-    public class AlzNinjecrDependancyResolver : IDependencyResolver
+    public class AlzNinjecrDependancyResolver :  System.Web.Http.Dependencies.IDependencyResolver
     {
         private IKernel _kernel;
 
@@ -30,15 +30,16 @@ namespace Lesson1
             return _kernel.GetAll(serviceType, new IParameter[0]);
         }
 
-        //public IDependencyScope BeginScope()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IDependencyScope BeginScope()
+        {
+            throw new NotImplementedException();
+        }
 
 
-        //public void Dispose()
-        //{
-        //    _kernel.Dispose();
-        //}
+        public void Dispose()
+        {
+            _kernel.Dispose();
+        }
+
     }
 }

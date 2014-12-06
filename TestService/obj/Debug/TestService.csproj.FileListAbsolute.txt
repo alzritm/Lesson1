@@ -1,5 +1,0 @@
-D:\Programming\Самообучение\Lesson1\TestService\bin\Debug\TestService.dll
-D:\Programming\Самообучение\Lesson1\TestService\bin\Debug\TestService.pdb
-D:\Programming\Самообучение\Lesson1\TestService\obj\Debug\TestService.csprojResolveAssemblyReference.cache
-D:\Programming\Самообучение\Lesson1\TestService\obj\Debug\TestService.dll
-D:\Programming\Самообучение\Lesson1\TestService\obj\Debug\TestService.pdb
