@@ -87,9 +87,10 @@ namespace Lesson1
             AreaRegistration.RegisterAllAreas();
 
             //AttributeRoutingConfig.RegisterRoutes(GlobalConfiguration.Configuration.Routes);
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //WebApiConfig.Register(GlobalConfiguration.Configuration);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterRoutes(RouteTable.Routes);
         }
 
         protected override IKernel CreateKernel()
@@ -99,9 +100,9 @@ namespace Lesson1
             //DependencyResolver.SetResolver(new AlzNinjecrDependancyResolver(kernel));
             //return kernel;
 
-            var kernel = new StandardKernel();            
-            //kernel.Bind<ISalesService>().To<SalesService>();
-            //kernel.Load(Assembly.GetExecutingAssembly());
+            var kernel = new StandardKernel();
+            kernel.Bind<ISalesService>().To<SalesService>();
+            kernel.Load(Assembly.GetExecutingAssembly());
             //kernel.Bind<DbConnection>().ToSelf().InRequestScope();
 
             //kernel.Bind<IPrincipal>().ToMethod(ctx => HttpContext.Current.User).InRequestScope();

@@ -32,13 +32,13 @@ namespace Lesson1
 
         public IDependencyScope BeginScope()
         {
-            throw new NotImplementedException();
+            return this;
         }
 
 
         public void Dispose()
         {
-            _kernel.Dispose();
+            //_kernel.Dispose();
         }
 
     }
