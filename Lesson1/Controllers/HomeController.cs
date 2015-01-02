@@ -2,7 +2,8 @@
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
-using AttributeRouting.Web.Http;//Install-Package AttributeRouting.Core.Http
+using AttributeRouting.Web.Mvc;
+//using AttributeRouting.Web.Http;//Install-Package AttributeRouting.Core.Http
 namespace Lesson1.Controllers
 {
     using TestService;
@@ -14,7 +15,7 @@ namespace Lesson1.Controllers
         public ISalesService SalesService { private get; set; }
         //
         // GET: /Home/
-
+        [GET("")]
         public ActionResult Index()
         {
             var cookie = new HttpCookie("ZolotovKok")

@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AttributeRouting.Web.Mvc;
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Mvc;
@@ -33,16 +34,18 @@ namespace Lesson1
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapAttributeRoutes();
 
-            routes.MapRoute(
-                "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new
-                {
-                    controller = "Home",
-                    action = "Index",
-                    id = UrlParameter.Optional
-                });
+            //routes.MapRoute(
+            //    "Default", // Route name
+            //    "{controller}/{action}/{id}", // URL with parameters
+            //    new
+            //    {
+            //        controller = "Home",
+            //        action = "Index",
+            //        id = UrlParameter.Optional
+            //    });
+
         }
         //public AlzNinjecrDependancyResolver resolver;
         //protected void Application_Start()

@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
-using AttributeRouting.Web.Http;
+//using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using Ninject;
 
 namespace Lesson1.Controllers
@@ -16,8 +17,8 @@ namespace Lesson1.Controllers
         [Inject]
         public ISalesService SalesService { private get; set; }
 
-        [GET("/api/sales")]
-        public HttpResponseMessage GetList()
+        [GET("sales")]
+        public JsonResult GetList()
         {
             //if (SalesService == null)
             //{
@@ -25,14 +26,14 @@ namespace Lesson1.Controllers
             //}
             var res = SalesService.GetList();
             var total = SalesService.GetNuberSales();
-            
-            //return Json(res);
-            return Request.CreateResponse(HttpStatusCode.OK, new
-            {
-                data = res,
-                total = total,
-                success = true
-            });
+
+            return Json(res, JsonRequestBehavior.AllowGet);
+            //return Request.CreateResponse(HttpStatusCode.OK, new
+            //{
+            //    data = res,
+            //    total = total,
+            //    success = true
+            //});
         }
     }
 }
