@@ -15,16 +15,11 @@ function popup() {
 }
     //------
 //  Grid
-
-// Grid widget configuration
-var config = {
-    grid: {
-        name: 'grid',
-        show: {
-            footer: true,
-            toolbar: true
-        },
-        //url: 'listForTable',
+$(function () {
+    $('#mainGrid').w2grid({
+        name: 'mainGrid',
+        url: 'api/sales',
+        method: 'GET', // need this to avoid 412 error on Safari
         columns: [
             {field: 'recid', caption: 'ID', size: '50px', sortable: true },
             { field: 'Date', caption: 'Дата', size: '150px', sortable: true, resizable: true },
@@ -32,21 +27,51 @@ var config = {
             { field: 'Count', caption: 'Количество', size: '140px', sortable: true, searchable: 'text', resizable: true },
             { field: 'Comment', caption: 'Комментарий', size: '100%', resizable: true, sortable: true },
         ],
-        records: [
-            { recid: 1, Date: '12 / 01 / 2010', Name: 'John', Count: '1', Comment: 'Кажется jdoe@gmail.com' },
-            { recid: 2, Date: '12 / 01 / 2012', Name: 'John2', Count: '2', Comment: 'jdoe@gmail.cosefsm' }
-        ]
-    }
-};
+        parser: function (responseText) {
+            var data = $.parseJSON(responseText);
+            // do other things
+            alert(responseText);
+            return data;
+        },
+        onChange: function (event) {
+            console.log(event);
+        }
+    });
+});
 
-function refreshGrid() {
-    w2ui.grid.autoLoad = true;
+function refreshGrid(auto) {
+    w2ui.grid.autoLoad = auto;
     w2ui.grid.skip(0);
 }
+// Grid widget configuration
+//var config = {
+//    grid: {
+//        name: 'grid',
+//        show: {
+//            footer: true,
+//            toolbar: true
+//        },
+//        url: 'api/sales',
+//        method: 'GET',
+//        columns: [
+//            {field: 'recid', caption: 'ID', size: '50px', sortable: true },
+//            { field: 'Date', caption: 'Дата', size: '150px', sortable: true, resizable: true },
+//            { field: 'Name', caption: 'Имя', size: '140px', sortable: true, searchable: 'text', resizable: true },
+//            { field: 'Count', caption: 'Количество', size: '140px', sortable: true, searchable: 'text', resizable: true },
+//            { field: 'Comment', caption: 'Комментарий', size: '100%', resizable: true, sortable: true },
+//        ]
+//        //records: [
+//        //    { recid: 1, Date: '12 / 01 / 2010', Name: 'John', Count: '1', Comment: 'Кажется jdoe@gmail.com' },
+//        //    { recid: 2, Date: '12 / 01 / 2012', Name: 'John2', Count: '2', Comment: 'jdoe@gmail.cosefsm' }
+//        //]
+//    }
+   
+//};
 
-//$(function () {
-$('#mainGrid').w2grid(config.grid);
-w2ui.grid.toggleColumn('recid');
+
+//$('#mainGrid').w2grid(config.grid);
+//w2ui.grid.toggleColumn('recid');
+
 //});
 // End Grid
 //------

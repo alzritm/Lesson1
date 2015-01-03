@@ -17,23 +17,43 @@ namespace Lesson1.Controllers
         [Inject]
         public ISalesService SalesService { private get; set; }
 
-        [GET("sales")]
+        [GET("api/sales")]
         public JsonResult GetList()
         {
             //if (SalesService == null)
             //{
             //    SalesService = AppKernel.Get<ISalesService>();
             //}
-            var res = SalesService.GetList();
-            var total = SalesService.GetNuberSales();
+            var records = SalesService.GetList();
+            var _total = SalesService.GetNuberSales();
+            var data = new 
+            {
+                status = "success",
+                total = _total,
+                records
+            };
 
-            return Json(res, JsonRequestBehavior.AllowGet);
+            return Json(data , JsonRequestBehavior.AllowGet);
             //return Request.CreateResponse(HttpStatusCode.OK, new
             //{
             //    data = res,
             //    total = total,
             //    success = true
             //});
+        }
+        [POST("api/sales")]
+        public JsonResult PostList()
+        {
+            var records = SalesService.GetList();
+            var _total = SalesService.GetNuberSales();
+            var data = new
+            {
+                status = "success",
+                total = _total,
+                records
+            };
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

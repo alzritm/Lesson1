@@ -56,6 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fields.cs" />
+    <Compile Include="Sales.cs" />
     <Compile Include="SalesList.cs" />
     <Compile Include="SalesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
