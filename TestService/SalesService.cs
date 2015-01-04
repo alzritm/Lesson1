@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,10 @@ namespace TestService
         /// <returns></returns>
         public List<SalesList> GetList()
         {
+            var green = new Style(Color.Empty,Color.ForestGreen);
+            //green.backgroundColor = ;
+
+            
             var sales =new List<SalesList>
             {
                 new SalesList
@@ -29,7 +34,8 @@ namespace TestService
                     Date = DateTime.Now.ToShortDateString().Replace(".","/"),
                     Name = "Первая",
                     Count = 1,
-                    Comment = ""
+                    Comment = "",
+                    style = green.GetString()//"background-color: #C2F5B4"
                 },
                  new SalesList
                 {

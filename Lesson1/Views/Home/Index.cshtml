@@ -18,6 +18,10 @@ function popup() {
 $(function () {
     $('#mainGrid').w2grid({
         name: 'mainGrid',
+        show: {
+                        footer: true,
+                        toolbar: true
+                    },
         url: 'api/sales',
         method: 'GET', // need this to avoid 412 error on Safari
         columns: [

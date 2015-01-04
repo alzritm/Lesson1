@@ -13,5 +13,6 @@ namespace TestService
         public string Name { get; set; }
         public decimal Count { get; set; }
         public string Comment { get; set; }
+        public string style { get; set; }
     }
 }
